@@ -33,6 +33,12 @@ var APP_ID = undefined;//replace with 'amzn1.echo-sdk-ams.app.[your-unique-value
 /**
  * Array containing knock knock jokes.
  */
+
+ var riddles = [
+   "",
+   "",
+
+ ]
 var JOKE_LIST = [
     {setup: "To", speechPunchline: "Correct grammar is <break time=\"0.2s\" /> to whom.",
         cardPunchline: "Correct grammar is 'to whom'."},
@@ -59,23 +65,23 @@ var JOKE_LIST = [
 var AlexaSkill = require('./AlexaSkill');
 
 /**
- * WiseGuySkill is a child of AlexaSkill.
+ * DirtyRiddleSkill is a child of AlexaSkill.
  * To read more about inheritance in JavaScript, see the link below.
  *
  * @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Introduction_to_Object-Oriented_JavaScript#Inheritance
  */
-var WiseGuySkill = function () {
+var DirtyRiddleSkill = function () {
     AlexaSkill.call(this, APP_ID);
 };
 
 // Extend AlexaSkill
-WiseGuySkill.prototype = Object.create(AlexaSkill.prototype);
-WiseGuySkill.prototype.constructor = WiseGuySkill;
+DirtyRiddleSkill.prototype = Object.create(AlexaSkill.prototype);
+DirtyRiddleSkill.prototype.constructor = DirtyRiddleSkill;
 
 /**
  * Overriden to show that a subclass can override this function to initialize session state.
  */
-WiseGuySkill.prototype.eventHandlers.onSessionStarted = function (sessionStartedRequest, session) {
+DirtyRiddleSkill.prototype.eventHandlers.onSessionStarted = function (sessionStartedRequest, session) {
     console.log("onSessionStarted requestId: " + sessionStartedRequest.requestId
         + ", sessionId: " + session.sessionId);
 
@@ -85,25 +91,25 @@ WiseGuySkill.prototype.eventHandlers.onSessionStarted = function (sessionStarted
 /**
  * If the user launches without specifying an intent, route to the correct function.
  */
-WiseGuySkill.prototype.eventHandlers.onLaunch = function (launchRequest, session, response) {
-    console.log("WiseGuySkill onLaunch requestId: " + launchRequest.requestId + ", sessionId: " + session.sessionId);
+DirtyRiddleSkill.prototype.eventHandlers.onLaunch = function (launchRequest, session, response) {
+    console.log("DirtyRiddleSkill onLaunch requestId: " + launchRequest.requestId + ", sessionId: " + session.sessionId);
 
-    handleTellMeAJokeIntent(session, response);
+    handleTellMeRiddleIntent(session, response);
 };
 
 /**
  * Overriden to show that a subclass can override this function to teardown session state.
  */
-WiseGuySkill.prototype.eventHandlers.onSessionEnded = function (sessionEndedRequest, session) {
+DirtyRiddleSkill.prototype.eventHandlers.onSessionEnded = function (sessionEndedRequest, session) {
     console.log("onSessionEnded requestId: " + sessionEndedRequest.requestId
         + ", sessionId: " + session.sessionId);
 
     //Any session cleanup logic would go here.
 };
 
-WiseGuySkill.prototype.intentHandlers = {
-    "TellMeAJokeIntent": function (intent, session, response) {
-        handleTellMeAJokeIntent(session, response);
+DirtyRiddleSkill.prototype.intentHandlers = {
+    "TellMeRiddleIntent": function (intent, session, response) {
+        handleTellMeRiddleIntent(session, response);
     },
 
     "WhosThereIntent": function (intent, session, response) {
@@ -159,11 +165,11 @@ WiseGuySkill.prototype.intentHandlers = {
 /**
  * Selects a joke randomly and starts it off by saying "Knock knock".
  */
-function handleTellMeAJokeIntent(session, response) {
+function handleTellMeRiddleIntent(session, response) {
     var speechText = "";
 
     //Reprompt speech will be triggered if the user doesn't respond.
-    var repromptText = "You can ask, who's there";
+    var repromptText = "You can ask, tell me a riddle.";
 
     //Check if session variables are already initialized.
     if (session.attributes.stage) {
@@ -206,7 +212,7 @@ function handleTellMeAJokeIntent(session, response) {
 /**
  * Responds to the user saying "Who's there".
  */
-function handleWhosThereIntent(session, response) {
+function handleHintIntent(session, response) {
     var speechText = "";
     var repromptText = "";
 
@@ -218,7 +224,7 @@ function handleWhosThereIntent(session, response) {
             //Advance the stage of the dialogue.
             session.attributes.stage = 2;
 
-            repromptText = "You can ask, " + speechText + " who?";
+            repromptText = "You can ask, " + speechText + " ?";
         } else {
             session.attributes.stage = 1;
             speechText = "That's not how knock knock jokes work! <break time=\"0.3s\" /> "
@@ -230,9 +236,9 @@ function handleWhosThereIntent(session, response) {
 
         //If the session attributes are not found, the joke must restart.
         speechText = "Sorry, I couldn't correctly retrieve the joke. "
-            + "You can say, tell me a joke";
+            + "You can say, tell me a riddle";
 
-        repromptText = "You can say, tell me a joke";
+        repromptText = "You can say, tell me a riddle";
     }
 
     var speechOutput = {
@@ -308,6 +314,6 @@ function handleSetupNameWhoIntent(session, response) {
 // Create the handler that responds to the Alexa Request.
 exports.handler = function (event, context) {
     // Create an instance of the WiseGuy Skill.
-    var skill = new WiseGuySkill();
+    var skill = new DirtyRiddleSkill();
     skill.execute(event, context);
 };

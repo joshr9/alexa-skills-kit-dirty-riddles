@@ -1,10 +1,10 @@
 {
   "intents": [
     {
-      "intent": "TellMeAJokeIntent"
+      "intent": "TellMeRiddleIntent"
     },
     {
-      "intent": "WhosThereIntent"
+      "intent": "HintIntent"
     },
     {
      "intent": "SetupNameWhoIntent",
