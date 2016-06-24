@@ -1,21 +1,14 @@
-TellMeRiddleIntent tell me a riddle
-TellMeRiddleIntent tell a riddle
-TellMeRiddleIntent say a riddle
-TellMeRiddleIntent make a riddle
-TellMeRiddleIntent give me a riddle
-TellMeRiddleIntent give me a riddle
-TellMeRiddleIntent a riddle
-TellMeRiddleIntent the riddle
-TellMeRiddleIntent what's a riddle
-TellMeRiddleIntent what is a riddle
-TellMeRiddleIntent if i can tell me a riddle
-TellMeRiddleIntent will it tell me a riddle
-TellMeRiddleIntent can it tell me a riddle
-TellMeRiddleIntent to tell me a riddle
-
-HintIntent give me a hint
-HintIntent what is a hint
-HintIntent hint
-HintIntent how about a hint
-
-SetupNameWhoIntent {SetupName} who
+GetNewFactIntent a fact
+GetNewFactIntent a space fact
+GetNewFactIntent tell me a fact
+GetNewFactIntent tell me a space fact
+GetNewFactIntent give me a fact
+GetNewFactIntent give me a space fact
+GetNewFactIntent tell me trivia
+GetNewFactIntent tell me a space trivia
+GetNewFactIntent give me trivia
+GetNewFactIntent give me a space trivia
+GetNewFactIntent give me some information
+GetNewFactIntent give me some space information
+GetNewFactIntent tell me something
+GetNewFactIntent give me something

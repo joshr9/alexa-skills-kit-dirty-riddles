@@ -1,19 +1,7 @@
 {
   "intents": [
     {
-      "intent": "TellMeRiddleIntent"
-    },
-    {
-      "intent": "HintIntent"
-    },
-    {
-     "intent": "SetupNameWhoIntent",
-     "slots":[
-        {
-          "name": "SetupName",
-          "type": "LIST_OF_SETUP_NAMES"
-        }
-      ]
+      "intent": "GetNewDirtyRiddleIntent"
     },
     {
       "intent": "AMAZON.HelpIntent"
@@ -25,4 +13,4 @@
       "intent": "AMAZON.CancelIntent"
     }
   ]
-}
+ }
